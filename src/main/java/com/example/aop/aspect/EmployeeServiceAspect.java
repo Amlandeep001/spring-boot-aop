@@ -16,9 +16,6 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class EmployeeServiceAspect {
 	
-	LocalDateTime startTime = null;
-	LocalDateTime endTime = null;
-	
 //	@Pointcut(value="execution(* com.example.aop.service.*.*(..))")
 	@Pointcut(value="within(com.example.aop.service.*)")
 	public void loggingPointCut() {
@@ -69,12 +66,12 @@ public class EmployeeServiceAspect {
 	@Around("loggingPointCut()")
 	public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
 		
-		startTime = LocalDateTime.now();
+		LocalDateTime startTime = LocalDateTime.now();
 		log.info("Before method invoked :: {}, current time :: {}" , joinPoint.getSignature().getName(), startTime);
 		
 		Object obj = joinPoint.proceed();
 		
-		endTime = LocalDateTime.now();
+		LocalDateTime endTime = LocalDateTime.now();
 		log.info("After method invoked :: {}, current time :: {}, duration :: {}" , joinPoint.getSignature().getName(), endTime, Duration.between(startTime, endTime).toMillis());
 		
 		return obj;

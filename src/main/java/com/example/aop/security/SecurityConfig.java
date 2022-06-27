@@ -1,28 +1,39 @@
 package com.example.aop.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig{
 	
-	@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}password").roles("USER", "ADMIN");
-
-    }
+	 @Bean
+	    public InMemoryUserDetailsManager userDetailsService() {
+		 
+		 UserDetails user = User
+	        		.withUsername("user")
+	                .password("{noop}password")
+	                .roles("USER")
+	                .build();  
+		 
+		 UserDetails admin = User
+	                .withUsername("admin")
+	                .password("{noop}password")
+	                .roles("USER", "ADMIN")
+	                .build(); 
+	        
+	        return new InMemoryUserDetailsManager(user,  admin);
+	    }
 
     // Secure the endpoins with HTTP Basic authentication
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
                 //HTTP Basic authentication
@@ -34,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .csrf().disable()
                 .formLogin().disable();
+        
+		return http.build();
     }
 
     /*@Bean

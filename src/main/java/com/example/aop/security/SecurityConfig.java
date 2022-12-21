@@ -44,7 +44,7 @@ public class SecurityConfig{
                 .antMatchers("/remove/employee**").hasRole("ADMIN")
                 .and()
                 .csrf().disable()
-                .formLogin().disable();
+                .formLogin().permitAll();
         
 		return http.build();
     }

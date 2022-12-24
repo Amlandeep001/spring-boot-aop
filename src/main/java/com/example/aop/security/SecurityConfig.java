@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig{
 	
 	 @Bean
-	    public InMemoryUserDetailsManager userDetailsService() {
+	 InMemoryUserDetailsManager userDetailsService() {
 		 
 		 UserDetails user = User
 	        		.withUsername("user")
@@ -33,7 +33,7 @@ public class SecurityConfig{
 
     // Secure the endpoins with HTTP Basic authentication
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
                 //HTTP Basic authentication

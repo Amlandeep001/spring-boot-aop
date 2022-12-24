@@ -72,7 +72,7 @@ public class EmployeeServiceAspect {
 		Object obj = joinPoint.proceed();
 		
 		LocalDateTime endTime = LocalDateTime.now();
-		log.info("After method invoked :: {}, current time :: {}, duration :: {}" , joinPoint.getSignature().getName(), endTime, Duration.between(startTime, endTime).toMillis());
+		log.info("After method invoked :: {}, current time :: {}, duration :: {} ms" , joinPoint.getSignature().getName(), endTime, Duration.between(startTime, endTime).toMillis());
 		
 		return obj;
 		

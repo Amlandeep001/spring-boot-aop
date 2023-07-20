@@ -1,12 +1,16 @@
 package com.example.aop.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @NoArgsConstructor
-public class Employee {
-	private String name;
-	private String empId;
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Employee
+{
+	String name;
+	String empId;
 
 }

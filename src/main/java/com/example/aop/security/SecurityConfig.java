@@ -2,6 +2,7 @@ package com.example.aop.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -38,14 +39,14 @@ public class SecurityConfig
 	{
 		http
 				// HTTP Basic authentication
-				.httpBasic()
-				.and()
-				.authorizeRequests()
-				.antMatchers("/add/employee**").hasRole("USER")
-				.antMatchers("/remove/employee**").hasRole("ADMIN")
-				.and()
-				.csrf().disable()
-				.formLogin().permitAll();
+				.httpBasic(Customizer.withDefaults())
+				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers("/add/employee**").hasRole("USER")
+						.requestMatchers("/remove/employee**").hasRole("ADMIN")
+						.anyRequest().authenticated())
+				.csrf((csrf) -> csrf.disable())
+				.formLogin(formLogin -> formLogin
+						.permitAll());
 
 		return http.build();
 	}

@@ -5,10 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
-@EnableAspectJAutoProxy(proxyTargetClass=true)
-public class AopApplication {
+@EnableAspectJAutoProxy(proxyTargetClass = true)
+public class AopApplication
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(AopApplication.class, args);
 	}
 

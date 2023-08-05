@@ -1,13 +1,12 @@
 package com.example.aop.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import lombok.Builder;
+import lombok.Value;
+import lombok.extern.jackson.Jacksonized;
 
-@Data
-@NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Value
+@Jacksonized
+@Builder
 public class Employee
 {
 	String name;

@@ -14,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig
 {
-
 	@Bean
 	InMemoryUserDetailsManager userDetailsService()
 	{
@@ -50,5 +49,4 @@ public class SecurityConfig
 
 		return http.build();
 	}
-
 }

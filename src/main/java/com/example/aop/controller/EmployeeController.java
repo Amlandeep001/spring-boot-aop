@@ -10,7 +10,6 @@ import com.example.aop.service.EmployeeService;
 @RestController
 public class EmployeeController
 {
-
 	private EmployeeService employeeService;
 
 	public EmployeeController(EmployeeService employeeService)
@@ -31,5 +30,4 @@ public class EmployeeController
 
 		return "Employee removed";
 	}
-
 }

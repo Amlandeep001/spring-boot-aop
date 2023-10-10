@@ -7,7 +7,6 @@ import com.example.aop.model.Employee;
 @Service
 public class EmployeeService
 {
-
 	public Employee createEmployee(String name, String empId)
 	{
 		return Employee.builder()

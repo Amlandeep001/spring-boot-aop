@@ -16,7 +16,6 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class EmployeeServiceAspect
 {
-
 	// @Pointcut(value="execution(* com.example.aop.service.*.*(..))")
 	@Pointcut(value = "within(com.example.aop.service.*)")
 	public void loggingPointCut()

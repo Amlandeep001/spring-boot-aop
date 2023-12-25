@@ -64,7 +64,8 @@ public class EmployeeServiceAspect
 	}*/
 
 	// @Around(value = "execution(* com.example.aop.service.*.*(..))")
-	@Around("loggingPointCut()")
+	// @Around("loggingPointCut()")
+	@Around("target(com.example.aop.service.EmployeeService)")
 	public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable
 	{
 		LocalDateTime startTime = LocalDateTime.now();

@@ -10,7 +10,7 @@ import com.example.aop.service.EmployeeService;
 @RestController
 public class EmployeeController
 {
-	private EmployeeService employeeService;
+	private final EmployeeService employeeService;
 
 	public EmployeeController(EmployeeService employeeService)
 	{
